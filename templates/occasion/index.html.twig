@@ -1,0 +1,139 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Occasion{% endblock %}
+
+{% block body %}
+
+<style>
+  html, body { margin:0; padding: 0;background: radial-gradient(#262526, #f2f2f2); font-family: "barlow"; }
+
+
+  
+    nav { display: flex; justify-content: space-between; padding: 1rem 2rem;background: #262526; margin-bottom: 150px;}
+    nav ul { display: flex; list-style: none;}
+    nav li { padding-left: 1rem;}
+    nav a { color: #f2f2f2; text-decoration: none; text-transform: uppercase; font-size: 0.7rem;}
+    h2 { font-size: 1.5rem; color: #f2f2f2;}
+    .d-block { width: 400px; height: 370px;}
+
+    
+   
+    h1 { text-transform: uppercase; font-size: 2rem; color: red; text-align: center;}
+    .card-img-top { width: 300px; height: 200px;}
+    .card-img-top2 { width: 300px; height: 170px;}
+    .card { display: flex; flex-direction: row; flex-wrap: wrap; padding: 1rem;
+    margin-bottom: 50px; border: 1px solid #262526; background: lightgrey; box-shadow: 15px 15px 15px #f2f2f2;}
+    .card-text { color: #e34949; font-size: 1.2rem; text-decoration: none;}
+    .card-title { font-weight: bold; font-size: 1.8rem; color: #D92332; text-shadow: 5px 5px 5px #262526;}
+    .container { text-align: center;}
+    .center-children { text-align: center;}
+    .li { color: #18496e; font-size: 1.3rem; list-style-type: upper-roman; font-weight: bolder;}
+    .display-4 { color: #D94350; text-shadow: 10px 7px 7px #262526;}
+
+
+    footer { margin-top: 200px;}
+    #container { padding-top: 20px; margin-bottom: 30px;}
+    #pagination { display: flex; justify-content: center;}
+    .pages { width: 100px; line-height: 40px; text-align: center; border: 3px solid #f2f2f2;
+    display: inline-block; text-decoration: none; color: #f2f2f2; background: #D92332;}
+    .pages:not(:first-child) { margin-left: 15px;}
+    .pages:first-child { border-radius: 10px 0 0 10px;}
+    .pages:last-child { border-radius: 0 10px 10px 0;}
+    .pages:hover { background: #D9777F;}
+    
+
+    </style>
+
+
+
+
+{% block header %}
+<header>
+	<nav>
+		<h2 class="" id="">LES VOITURES</h2>
+		<ul class="">
+			<li><a href="page">Accueil</a></li>
+			<li><a href="home">Services</a></li>
+			<li><a href="contact">Nous contacter</a></li>
+			<li><a href="admin">admin</a></li>
+		</ul>
+	</nav>
+</header>
+	{% endblock %} 
+
+
+
+
+
+{% block main%}
+
+<main>
+  <main class="container">
+    <div class="p-4 p-md-5 mb-5 rounded text-body-emphasis bg-body-secondary">
+      <div class="row-lg-6 px-0">
+        <h3 class="display-4">Bienvenue au garage V.Parrot</h3>
+        <p class="lead my-3">Nous sommes a votre disposition pour toutes réparation sur votre véhicule. Nous sommes des amis passionnées de mécanique. Nous avons tous travaiillé pour des grandes marque de voitures, 
+           FERRARI pour certains LAMBORGHINI, PORSCHE, BUGATTI pour d'autres; Moi mème j'ai travaillé plus de 15 années pour la Formule 1. Fort de notre experience, nous avons décidé de fonder notre propre garage </p>
+        <p class="lead mb-0"><a href="#" class="text-body-emphasis fw-bold">Continue reading...</a></p>
+      </div>
+    </div>
+   
+
+  {% for vehicule in vehicules %}
+<div class="container-fluid ">
+  <div class="row ">
+
+
+    <div class="col">
+      <div class="card">
+        <img src="{{ app.request.basepath }}/images/vehicules/{{ vehicule.imagename }}" alt="voiture" class="card-img-top" width="200" height="250" >	
+        <img src="images/logo-parrot.jpg" class="card-img-top2" alt="...">
+        <div class="card-body">
+          <h1 class="card-title">{{ vehicule.titre }}</h1>
+          <ul class="card-text">
+            <li class="li">{{ vehicule.marque }}</li>
+            <li class="li">{{ vehicule.moteur }}</li>
+            <li class="li">{{ vehicule.categorie }}</li>
+            <li class="li">{{ vehicule.annee }}</li>
+            <li class="li">{{ vehicule.kilometre }}</li>
+			      <li class="li">{{ vehicule.prix }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+  </main>
+
+{% endblock %}
+
+{% block footer %}
+
+
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+      <p class="col-md-4 mb-0 text-body-secondary">© 2023 Company, Inc</p>
+  
+      <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      
+    </div>
+    <div id="container">
+    <div id="pagination">
+        <a href="page" class="pages">accueil</a>
+        <a href="occasion" class="pages">voitures</a>
+        <a href="home" class="pages">services</a>
+        <a href="contact" class="pages">contact</a>
+    </div>
+</div>
+      
+    </footer>
+  </div>
+
+{% endblock %}
+
+
+{% endblock %}
